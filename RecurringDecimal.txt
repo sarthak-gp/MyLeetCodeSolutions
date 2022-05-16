@@ -1,0 +1,35 @@
+   public string FractionToDecimal(int numerator, int denominator) {
+        //return 0 when num=0
+        //add first quotient,followed by . if remainder!=0
+        //keep track of length in order to insert next quotient
+        //trick->stop when first repitition occurs and add () to result string.
+        if(numerator==0)
+            return 0;
+        string res= new StringBuilder();
+        long n = Maths.Abs((long)numerator);
+        long d = Maths.Abs((long)denominator);
+        bool negsignFlag=(numerator>0 && denominator<0)||(numerator<0 && denominator>0);
+        res.Append(n/d);
+        long rem = n%d;
+        if(rem!=0)
+            res.Append('.');
+        Dictionary<long,int> seq= new Dictionary<long,int>();
+        int count=res.Length;
+        while(rem!=0){
+            //remembers the remainder and the string length
+            seq.Add(remain,count++);
+            //adds the quotient
+            res.Append((rem*10)/d);
+            long nextRem=(rem*10)/d;
+            if(sq.ContainsKey(nextRem)){
+                //insert(pos,value)
+                res.Insert(seq[nextRem],'(');
+                res.Append(')');
+                break;
+            }
+            rem=nextRem;
+        }
+        if(negsignflag)
+            res.Insert(0,'-');
+        return res;
+    }
