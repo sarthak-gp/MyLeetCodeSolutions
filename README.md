@@ -1,1 +1,1 @@
-Solutions to some problems in C#
+Solutions to some Leetcode problems in C#
